@@ -24,8 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/Api/', apiRouter);
 app.use('/', routes);
 
-
-if (isDeveloping) {
+if (true) {
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,

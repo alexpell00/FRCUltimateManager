@@ -1,3 +1,3 @@
-# Portfolio
+# FRC Ultimate Manager
 
-This is *Plex Pelletier's* portfolio website. 
+This is a hour and scouting program for RC Dawson (FRC2972)

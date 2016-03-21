@@ -15,6 +15,9 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/'
   },
+  historyApiFallback: {
+    index: '/'
+  },
   plugins: [
     // new HtmlWebpackPlugin({
     //   template: 'app/index.tpl.html',

@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-21 14:34:05
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-21 22:39:19
+* @Last Modified time: 2016-03-22 15:58:35
 */
 
 var mongoose = require('mongoose');
@@ -21,7 +21,7 @@ module.exports = {
 		this.ScemaValueTypeScema();
 		this.ScemaInfoScema();
 		this.ScemaDataScema();
-
+		this.SchemaSettings();
 		//setup
 		// var ScemaValueTypes = mongoose.model('ScemaValueType');
 		// var v1 = new ScemaValueTypes();
@@ -45,6 +45,18 @@ module.exports = {
 
 	},
 
+	SchemaSettings() {
+		var SettingsSchemaBlueprint = new Schema({
+		    team     : String,
+		    year      : String,
+		    activeSchema : { 
+		    	type: Schema.Types.ObjectId,
+				ref: 'Scemas'
+			}
+		});
+		return mongoose.model('Settings', SettingsSchemaBlueprint)
+	},
+
 	ScemaDataScema() {
 		var ScemaInfoScemaBlueprint = new Schema({
 		    match 	: { 
@@ -58,7 +70,7 @@ module.exports = {
 			alliance	: String,
 			scemaInfo 	: { 
 		    	type: Schema.Types.ObjectId,
-				ref: 'Scemas'
+				ref: 'ScemaInfo'
 			},
 			data	: String,
 			data_sec	: String,
@@ -121,10 +133,14 @@ module.exports = {
 			},
 		    time    : Number,
 		    match_num	: Number,
-		    teams     : [{ 
+		    teams_red     : [{ 
 	    		type: mongoose.Schema.Types.ObjectId,
 		        ref: 'Team'
 			}],
+			teams_blue     : [{ 
+	    		type: mongoose.Schema.Types.ObjectId,
+		        ref: 'Team'
+			}]
 		});
 		return mongoose.model('Match', MatchScemaBlueprint)
 	},

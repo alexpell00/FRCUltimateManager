@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 16:27:04
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-22 00:36:25
+* @Last Modified time: 2016-03-22 00:44:55
 */
 
 import React from 'react';
@@ -117,7 +117,7 @@ var Scema = React.createClass({
 		return (
 			<div>
 				<div className="content container">
-				    <h2 className="page-title">Scema <small></small></h2>
+				    <h2 className="page-title">Schema <small></small></h2>
 
 					<div className="row">
 			            <div className="col-md-12">

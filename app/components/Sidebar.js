@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 15:30:15
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-21 21:52:18
+* @Last Modified time: 2016-03-22 00:44:41
 */
 
 import React from 'react';
@@ -90,7 +90,7 @@ var Sidebar = React.createClass({
 			            <i className="fa fa-th">
 			            </i>
 			            <span className="name">
-			                Scema
+			                Schema
 			            </span>
 			        </Link>
 			    </li>

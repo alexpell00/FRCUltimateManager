@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 15:30:15
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-20 21:46:06
+* @Last Modified time: 2016-03-21 21:52:18
 */
 
 import React from 'react';
@@ -26,7 +26,7 @@ var Sidebar = React.createClass({
                 </li>
                 <li className="">
                     <Link to="/Hours" activeClassName="active">
-                        <i className="fa fa-home">
+                        <i className="fa fa-hourglass-half">
                         </i>
                         <span className="name">
                             Hours
@@ -42,7 +42,7 @@ var Sidebar = React.createClass({
 			<ul id="side-nav" className="side-nav">
 			    <li className="">
 			        <Link to="/Scouting/AddMatch" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-plus">
 			            </i>
 			            <span className="name">
 			                Add match
@@ -51,7 +51,7 @@ var Sidebar = React.createClass({
 			    </li>
 			    <li className="">
 			        <Link to="/Scouting/AddPitScout" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-plus-square">
 			            </i>
 			            <span className="name">
 			                Add Pit Scout
@@ -60,7 +60,7 @@ var Sidebar = React.createClass({
 			    </li>
 			    <li className="">
 			        <Link to="/Scouting/Compare" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-compress">
 			            </i>
 			            <span className="name">
 			                Compare
@@ -69,7 +69,7 @@ var Sidebar = React.createClass({
 			    </li>
 			    <li className="">
 			        <Link to="/Scouting/Teams" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-user-secret">
 			            </i>
 			            <span className="name">
 			                Teams
@@ -78,7 +78,7 @@ var Sidebar = React.createClass({
 			    </li>
 			    <li className="">
 			        <Link to="/Scouting/Matches" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-map-signs">
 			            </i>
 			            <span className="name">
 			                Matches
@@ -87,7 +87,7 @@ var Sidebar = React.createClass({
 			    </li>
 			    <li className="">
 			        <Link to="/Scouting/Scema" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-th">
 			            </i>
 			            <span className="name">
 			                Scema
@@ -102,7 +102,7 @@ var Sidebar = React.createClass({
 			<ul id="side-nav" className="side-nav">
 			    <li className="">
 			        <Link to="/Managment/TeamMembers" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-users">
 			            </i>
 			            <span className="name">
 			                Team Members
@@ -111,7 +111,7 @@ var Sidebar = React.createClass({
 			    </li>
 			    <li className="">
 			        <Link to="/Managment/Settings" activeClassName="active">
-			            <i className="fa fa-home">
+			            <i className="fa fa-cog">
 			            </i>
 			            <span className="name">
 			                Settings

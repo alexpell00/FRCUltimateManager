@@ -2,10 +2,12 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 16:27:49
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-21 16:50:51
+* @Last Modified time: 2016-03-22 00:43:40
 */
 
 import React from 'react';
+
+import SettingsDataManager from '../Elements/SettingsDataManager'
 
 var Settings = React.createClass({
   render: function() {
@@ -60,6 +62,8 @@ var Settings = React.createClass({
 	                        </form>
 	                    </div>
 	                </section>
+
+	                <SettingsDataManager/>
 	            </div>
            	</div>
 		</div>

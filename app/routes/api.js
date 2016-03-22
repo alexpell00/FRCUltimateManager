@@ -59,4 +59,87 @@ router.get('/Self', function(req, res) {
     res.send(req.user);
 });
 
+//	Scema
+router.get('/Scema/Scemas', function(req, res) {
+	var Scemas = mongoose.model('Scemas');
+	Scemas.find({}, function (err, docs) {
+        res.json(docs);
+    });
+});
+
+router.get('/Scema/ScemaInfoTypes', function(req, res) {
+	var ScemaInfoTypes = mongoose.model('ScemaInfoType');
+	ScemaInfoTypes.find({}, function (err, docs) {
+        res.json(docs);
+    });
+});
+
+router.get('/Scema/ScemaValueTypes', function(req, res) {
+	var ScemaValueTypes = mongoose.model('ScemaValueType');
+	ScemaValueTypes.find({}, function (err, docs) {
+        res.json(docs);
+    });
+});
+
+router.post('/Scema/ScemaInfos', function(req, res) {
+	var ScemaInfos = mongoose.model('ScemaInfo');
+	var ObjectId = require('mongoose').Types.ObjectId; 
+	ScemaInfos.find({scema: new ObjectId(req.body.scema_id)}).populate('infoType').populate('valueType').exec(function (err, docs) {
+        res.json(docs);
+    });
+});
+
+router.post('/Scema/AddRow', function(req, res) {
+	var ScemaInfo = mongoose.model('ScemaInfo');
+	var ObjectId = require('mongoose').Types.ObjectId; 
+	var scemaInfo = new ScemaInfo();
+	scemaInfo.name = 'Attribute Name';
+	scemaInfo.api_path = '';
+	scemaInfo.scema = new ObjectId(req.body.scema_id);
+	scemaInfo.valueType = new ObjectId('56f0cb580adffac759d7b375'); //Integer
+	scemaInfo.infoType = new ObjectId('56f0cac141c02c1e59f03e02'); //Pit
+	scemaInfo.order = 0;
+	scemaInfo.save();
+
+	res.json(scemaInfo);
+});
+
+router.post('/Scema/SaveScemaInfo', function(req, res) {
+	var ScemaInfos = mongoose.model('ScemaInfo');
+	var ObjectId = require('mongoose').Types.ObjectId; 
+	ScemaInfos.find({_id: new ObjectId(req.body.scemaInfo_id)}).exec(function (err, docs) {
+		if (docs.length == 1){
+			var scemaInfo = docs[0];
+
+			scemaInfo.name = req.body.name;
+			scemaInfo.api_path = req.body.api_path;
+			scemaInfo.valueType = new ObjectId(req.body.valueType); 
+			scemaInfo.infoType = new ObjectId(req.body.infoType); 
+			scemaInfo.order = req.body.order;
+			scemaInfo.save(function(err,scemaInfo){
+				ScemaInfos.find({scema: new ObjectId(scemaInfo.scema)}).populate('infoType').populate('valueType').exec(function (err, docs) {
+			        res.json(docs);
+			    });
+			});
+		}
+    });
+});
+
+router.post('/Scema/DeleteScemaInfo', function(req, res) {
+	var ScemaInfos = mongoose.model('ScemaInfo');
+	var ObjectId = require('mongoose').Types.ObjectId; 
+	ScemaInfos.find({_id: new ObjectId(req.body.scemaInfo_id)}).exec(function (err, docs) {
+		if (docs.length == 1){
+			var scemaInfo = docs[0];
+			scemaInfo.remove(function(){
+				scemaInfo.save(function(err,scemaInfo){
+					ScemaInfos.find({scema: new ObjectId(scemaInfo.scema)}).populate('infoType').populate('valueType').exec(function (err, docs) {
+				        res.json(docs);
+				    });
+				});
+			});
+		}
+    });
+});
+
 module.exports = router;

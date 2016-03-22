@@ -2,12 +2,13 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 20:29:38
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-20 21:41:39
+* @Last Modified time: 2016-03-21 20:36:16
 */
 
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory, hashHistory } from 'react-router'
+import request from 'superagent';
 
 import App from './components/App'
 import Dashboard from './components/Pages/Dashboard'
@@ -20,10 +21,16 @@ import Matches from './components/Pages/Matches'
 import Scema from './components/Pages/Scema'
 import TeamMembers from './components/Pages/TeamMembers'
 import Settings from './components/Pages/Settings'
+import AccountSettings from './components/Pages/AccountSettings'
+import Login from './components/Pages/Login'
+
+//Elements
+import AddTeamMemberModal from './components/Elements/AddTeamMemberModal'
 
 render((
 	<Router history={hashHistory}>
-		<Route path="/" component={App}>
+		<Route path="/Login" component={Login}/>
+		<Route path="/" component={App} onEnter={requireAuth}>
 			<IndexRoute component={Dashboard}/>
 			<Route path="Hours" component={Hours}/>
 
@@ -34,8 +41,28 @@ render((
 			<Route path="Scouting/Matches" component={Matches}/>
 			<Route path="Scouting/Scema" component={Scema}/>
 
-			<Route path="Managment/TeamMembers" component={TeamMembers}/>
+			<Route path="Managment/TeamMembers" component={TeamMembers}>
+				<Route path="Add" component={AddTeamMemberModal}/>
+			</Route>
 			<Route path="Managment/Settings" component={Settings}/>
+			<Route path="Managment/AccountSettings" component={AccountSettings}/>
 		</Route>
 	</Router>
 ), document.getElementById('App'))
+
+
+function requireAuth(nextState, replace) {
+	request
+        .get('/Api/isAuth')
+        .set('Accept', 'application/json')
+        .end(function(err, res){
+            let jsonRes = JSON.parse(res.text);
+            if (jsonRes.status == false){
+            	hashHistory.push('/Login')
+            	replace({
+			      pathname: '/Login',
+			      state: { nextPathname: nextState.location.pathname }
+			    })
+            }
+        }.bind(this));
+}

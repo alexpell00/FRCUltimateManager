@@ -444,7 +444,7 @@ $(function(){
         }
     });
 
-    initPjax();
+    // initPjax();
     initDemoFunctions();
     initAppPlugins();
 

@@ -2,10 +2,12 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 16:27:04
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-21 11:23:24
+* @Last Modified time: 2016-03-21 13:00:14
 */
 
 import React from 'react';
+
+import ScemaRow from '../Elements/ScemaRow'
 
 var Scema = React.createClass({
 	componentDidMount: function(){
@@ -21,22 +23,24 @@ var Scema = React.createClass({
 			<div>
 				<div className="content container">
 				    <h2 className="page-title">Scema <small></small></h2>
-				</div>
 
-				<div className="row">
-		            <div className="col-md-10">
-		                <h4>Closest stars</h4>
-		                <ol className="list-group list-group-outer sortable list-group-sortable">
-		                    <li className="list-group-item">
-		                        <i className="fa fa-bars"></i>
-		                        <a className="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-		                        &nbsp;&nbsp;&nbsp; 03 &nbsp;&nbsp;&nbsp;
-		                        Barnard's Star
-		                    </li>
-		                </ol>
-		                <br/>
-		            </div>
-		        </div>
+					<div className="row">
+			            <div className="col-md-12">
+							<div className="pull-right">
+								<input type="button" className="btn btn-primary" /* onClick={this.props.onSomeEvent} */ value="Add Row" />
+							</div>
+							
+			                <h4>Closest stars</h4>
+			                <ol className="list-group list-group-outer sortable list-group-sortable" style={{width:'100%'}}>
+				                <ScemaRow/>
+				                <ScemaRow/>
+				                <ScemaRow/>
+				                <ScemaRow/>
+				            </ol>
+			                
+			            </div>
+			        </div>
+			    </div>
 		    </div>
 		);
 	}

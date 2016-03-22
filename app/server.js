@@ -8,21 +8,51 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.js';
 import routes from './routes/index';
 import apiRouter from './routes/api';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
+//Passport
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+//MongoDB
+import mongoose from 'mongoose';
+mongoose.connect('mongodb://root:password@localhost:27017/FRCUltMan');
+import scemaManager from './modules/ScemaManager';
+scemaManager.init()
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
-import mongoose from 'mongoose';
-mongoose.connect('mongodb://portfolioUser1:huj23Kll!00@ds045694.mongolab.com:45694/portfolio');
-
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //set route
 app.use('/Api/', apiRouter);
 app.use('/', routes);
+
+// passport config
+var User = mongoose.model('User');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+
+
 
 if (true) {
   const compiler = webpack(config);

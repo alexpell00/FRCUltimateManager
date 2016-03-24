@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 16:27:04
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-22 00:44:55
+* @Last Modified time: 2016-03-24 02:35:07
 */
 
 import React from 'react';
@@ -75,7 +75,6 @@ var Scema = React.createClass({
             .set('Accept', 'application/json')
             .end(function(err, res){
             	let scemaInfos = JSON.parse(res.text);
-            	console.log(scemaInfos[0]);
                 this.setState({
                 	scemaInfos: scemaInfos
                 });
@@ -110,7 +109,11 @@ var Scema = React.createClass({
 	render: function() {	
 		if (this.state.scemaInfos.length > 0){
 			var scemaInfoRows = this.state.scemaInfos.map(function(scemaInfo) {
-	            return <ScemaRow delete={this.deleteScemaRow} key={scemaInfo._id} save={this.saveScemaRow} scemaInfo={scemaInfo} valueTypes={this.state.scemaValueTypes} infoTypes={this.state.scemaInfoTypes}/>;
+				if (scemaInfo.infoType){
+		            return <ScemaRow delete={this.deleteScemaRow} key={scemaInfo._id} save={this.saveScemaRow} scemaInfo={scemaInfo} valueTypes={this.state.scemaValueTypes} infoTypes={this.state.scemaInfoTypes}/>;
+		        }else{
+		        	return ""
+		        }
 	        }.bind(this));
 	    }
 

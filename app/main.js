@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 20:29:38
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-21 20:36:16
+* @Last Modified time: 2016-03-23 22:18:30
 */
 
 import React from 'react'
@@ -23,6 +23,7 @@ import TeamMembers from './components/Pages/TeamMembers'
 import Settings from './components/Pages/Settings'
 import AccountSettings from './components/Pages/AccountSettings'
 import Login from './components/Pages/Login'
+import Team from './components/Pages/Team'
 
 //Elements
 import AddTeamMemberModal from './components/Elements/AddTeamMemberModal'
@@ -38,6 +39,7 @@ render((
 			<Route path="Scouting/AddPitScout" component={AddPitScout}/>
 			<Route path="Scouting/Compare" component={Compare}/>
 			<Route path="Scouting/Teams" component={Teams}/>
+			<Route path="Scouting/Team/:teamid" component={Team}/>
 			<Route path="Scouting/Matches" component={Matches}/>
 			<Route path="Scouting/Scema" component={Scema}/>
 

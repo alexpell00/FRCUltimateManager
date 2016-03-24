@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-20 16:27:28
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-21 19:19:10
+* @Last Modified time: 2016-03-22 22:10:12
 */
 
 import React from 'react';
@@ -34,9 +34,11 @@ var TeamMembers = React.createClass({
 		});
 	},
   render: function() {
-  	var userRows = this.state.users.map(function(user) {
-            return <TeamMembersRow key={user._id} user={user}/>;
-        });
+  	if (this.state.users.length > 0){
+		var userRows = this.state.users.map(function(user) {
+	        return <TeamMembersRow key={user._id} user={user}/>;
+	    });
+	}
 
     return (
 		<div className="content container">

@@ -17,7 +17,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //MongoDB
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://root:password@localhost:27017/FRCUltMan');
+mongoose.connect('mongodb://frcuser:Password00@ds023458.mlab.com:23458/frc_u_m');
 import scemaManager from './modules/ScemaManager';
 scemaManager.init()
 

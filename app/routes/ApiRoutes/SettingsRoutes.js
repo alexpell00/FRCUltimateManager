@@ -2,7 +2,7 @@
 * @Author: alexpelletier
 * @Date:   2016-03-22 17:39:43
 * @Last Modified by:   alexpelletier
-* @Last Modified time: 2016-03-24 09:47:34
+* @Last Modified time: 2016-04-18 20:34:54
 */
 var express = require('express');
 var passport = require('passport');
@@ -211,7 +211,7 @@ module.exports = {
 						var http = require("http");
 						http.get(options, function(response) {
 
-							//remove current regionals
+							//remove matches for current regionals
 							var Matches = mongoose.model('Match');
 							var ObjectId = mongoose.Types.ObjectId; 
 							Matches.find({event: new ObjectId(event._id)}).remove().exec();
